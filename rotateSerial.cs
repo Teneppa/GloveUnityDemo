@@ -19,8 +19,6 @@ public class rotateSerial : MonoBehaviour
     public bool bEnableOffset = false;
     public bool enableRotation = false;
 
-    public bool wtf = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +46,7 @@ public class rotateSerial : MonoBehaviour
     // Read serial port
     // FIXME: At the beginning the serial will time out
     void serialEvent(SerialPort port) {
+        port.Write("f;");
         string myString = port.ReadLine();
 
         if(myString != null) {
@@ -60,10 +59,12 @@ public class rotateSerial : MonoBehaviour
             int finger2 = int.Parse(array[1], CultureInfo.InvariantCulture.NumberFormat);
             int finger3 = int.Parse(array[2], CultureInfo.InvariantCulture.NumberFormat);
 
+            /*
             float w = float.Parse(array[3], CultureInfo.InvariantCulture.NumberFormat);
             float y = float.Parse(array[4], CultureInfo.InvariantCulture.NumberFormat);
             float x = float.Parse(array[5], CultureInfo.InvariantCulture.NumberFormat);
             float z = float.Parse(array[6], CultureInfo.InvariantCulture.NumberFormat);
+            
 
             //Quaternion rotation = new Quaternion(x, y, z, w);
             Quaternion rotation = new Quaternion(-w, -y, -z, x);
@@ -97,6 +98,7 @@ public class rotateSerial : MonoBehaviour
                 // Change the objects orientation
                 transform.rotation = rotation;
             }
+            */
 
             // Rotate the bones
 
